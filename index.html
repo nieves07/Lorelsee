@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lorelsee · Linklerim</title>
+<meta name="description" content="Lorelsee resmi link sayfası - Kick, Instagram, TikTok, YouTube ve daha fazlası" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<meta property="og:title" content="Lorelsee · Linklerim">
+<meta property="og:description" content="Kick, Instagram, TikTok, YouTube - tüm linklerim tek yerde.">
+<meta name="theme-color" content="#050a17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050a17;
+    --bg2:#0a1428;
+    --card:#0b1730;
+    --card2:#0e1e3d;
+    --line:#4aa8e0;
+    --line-soft:rgba(120,200,255,.35);
+    --glow:#63d4ff;
+    --text:#e8f4ff;
+    --muted:#9db8d6;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #12244a 0%, transparent 60%),
+      radial-gradient(900px 500px at 90% 20%, #0d1c3d 0%, transparent 55%),
+      var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  /* ---------- yıldızlar ---------- */
+  .stars,.stars2{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-repeat:repeat;
+  }
+  .stars{
+    background-image:
+      radial-gradient(1px 1px at 20px 30px,#fff,transparent),
+      radial-gradient(1px 1px at 90px 120px,#cfe9ff,transparent),
+      radial-gradient(1.5px 1.5px at 160px 60px,#fff,transparent),
+      radial-gradient(1px 1px at 240px 200px,#a8d8ff,transparent),
+      radial-gradient(1.5px 1.5px at 300px 90px,#fff,transparent);
+    background-size:340px 260px;
+    animation:twinkle 5s ease-in-out infinite alternate;
+  }
+  .stars2{
+    background-image:
+      radial-gradient(1px 1px at 50px 80px,#fff,transparent),
+      radial-gradient(1.5px 1.5px at 130px 170px,#d9f0ff,transparent),
+      radial-gradient(1px 1px at 210px 40px,#fff,transparent),
+      radial-gradient(1px 1px at 280px 150px,#9ecfff,transparent);
+    background-size:420px 330px;
+    animation:twinkle 7s ease-in-out infinite alternate-reverse;
+    opacity:.7;
+  }
+  @keyframes twinkle{from{opacity:.35}to{opacity:1}}
+
+  .moon{
+    position:fixed;top:5vh;right:6vw;width:96px;height:96px;z-index:0;pointer-events:none;
+    animation:float 9s ease-in-out infinite;overflow:visible;
+  }
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(14px) rotate(2deg)}}
+
+  .wrap{
+    position:relative;z-index:2;
+    max-width:720px;margin:0 auto;padding:56px 18px 70px;
+  }
+
+  /* ---------- profil ---------- */
+  .profile{text-align:center;margin-bottom:34px;animation:rise .7s ease both}
+  /* ---------- avatar + çerçeve ---------- */
+  .avatar-wrap{
+    position:relative;width:146px;height:146px;margin:0 auto 16px;
+    display:grid;place-items:center;
+  }
+  .avatar-wrap::before{ /* dönen ışıltılı halka */
+    content:"";position:absolute;inset:-7px;border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0 58%, #7fdcff 72%, #ffffff 82%, #7fdcff 92%, transparent 100%);
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+            mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    animation:spin 7s linear infinite;
+    filter:drop-shadow(0 0 6px rgba(140,225,255,.95));
+  }
+  .avatar-wrap::after{ /* nefes alan dış hale */
+    content:"";position:absolute;inset:-18px;border-radius:50%;
+    border:1px solid rgba(140,220,255,.35);
+    box-shadow:0 0 26px rgba(70,170,255,.28) inset, 0 0 26px rgba(70,170,255,.22);
+    animation:halo 3.4s ease-in-out infinite;
+  }
+  .avatar-ring{
+    position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;
+    border:3px solid rgba(205,240,255,.92);
+    box-shadow:0 0 26px rgba(99,212,255,.6), 0 0 60px rgba(50,140,230,.35), inset 0 0 26px rgba(6,18,42,.55);
+    background:radial-gradient(circle at 65% 30%, #1d3d74 0%, #0d1c3c 55%, #071026 100%);
+    display:grid;place-items:center;
+  }
+  .avatar-ring .fallback{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-family:'Caveat',cursive;font-size:54px;color:#bfe6ff;
+    text-shadow:0 0 18px rgba(120,215,255,.8);
+  }
+  .avatar{
+    position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .spark{position:absolute;z-index:3;color:#eaf9ff;pointer-events:none;
+    text-shadow:0 0 10px rgba(160,230,255,.95);animation:twinkle 2.6s ease-in-out infinite}
+  .spark.a{top:2px;left:6px;font-size:15px}
+  .spark.b{top:24px;right:-4px;font-size:11px;animation-delay:.7s}
+  .spark.c{bottom:8px;left:-6px;font-size:12px;animation-delay:1.3s}
+  .spark.d{bottom:-2px;right:22px;font-size:16px;animation-delay:1.9s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes halo{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.06);opacity:1}}
+  .name{
+    font-family:'Caveat',cursive;font-size:52px;line-height:1;
+    text-shadow:0 0 18px rgba(120,215,255,.75),0 0 42px rgba(70,170,255,.4);
+    letter-spacing:1px;
+  }
+  .handle{color:var(--muted);font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-top:6px}
+  .kickbtn{
+    display:inline-flex;align-items:center;gap:10px;margin-top:17px;
+    padding:13px 27px;border-radius:12px;text-decoration:none;
+    font-size:13.5px;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;color:#03170c;
+    background:linear-gradient(120deg,#6bf59b 0%,#2fd46f 45%,#17a955 100%);
+    box-shadow:0 9px 26px rgba(35,200,95,.42), inset 0 1px 0 rgba(255,255,255,.45);
+    transition:.25s ease;
+  }
+  .kickbtn svg{width:19px;height:19px;fill:#03170c;transition:.25s}
+  .kickbtn:hover{transform:translateY(-3px);
+    box-shadow:0 14px 34px rgba(45,225,115,.6), inset 0 1px 0 rgba(255,255,255,.55)}
+  .kickbtn:hover svg{transform:scale(1.12)}
+  .dot{width:8px;height:8px;border-radius:50%;background:#ff4d6d;box-shadow:0 0 10px #ff4d6d;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+  /* ---------- kart / link ---------- */
+  .card{
+    position:relative;
+    background:linear-gradient(160deg,var(--card2),var(--card) 60%,#081227);
+    border:1px solid var(--line-soft);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    box-shadow:0 0 0 1px rgba(10,25,55,.9), 0 0 22px rgba(60,150,230,.16), inset 0 0 30px rgba(20,60,120,.25);
+    margin-bottom:16px;
+    animation:rise .7s ease both;
+  }
+  .card::before{
+    content:"";position:absolute;inset:5px;border:1px solid rgba(120,200,255,.16);
+    border-radius:9px;pointer-events:none;
+  }
+  .card::after{ /* köşe parıltıları */
+    content:"";position:absolute;inset:0;border-radius:var(--radius);pointer-events:none;
+    background:
+      radial-gradient(6px 6px at 0% 0%, rgba(160,230,255,.7), transparent 70%),
+      radial-gradient(6px 6px at 100% 0%, rgba(160,230,255,.7), transparent 70%),
+      radial-gradient(6px 6px at 0% 100%, rgba(160,230,255,.7), transparent 70%),
+      radial-gradient(6px 6px at 100% 100%, rgba(160,230,255,.7), transparent 70%);
+    opacity:.85;
+  }
+
+  a.link{
+    display:flex;align-items:center;gap:14px;
+    text-decoration:none;color:var(--text);
+    background:linear-gradient(120deg,rgba(20,45,90,.75),rgba(10,22,46,.75));
+    border:1px solid rgba(120,200,255,.3);
+    border-radius:12px;
+    padding:15px 18px;margin-bottom:14px;
+    transition:.28s ease;
+    position:relative;overflow:hidden;
+    animation:rise .7s ease both;
+  }
+  a.link:last-child{margin-bottom:0}
+  a.link::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(#8fe3ff,#2f8fd6);opacity:.9;
+  }
+  a.link:hover{
+    transform:translateY(-3px) scale(1.012);
+    border-color:rgba(160,225,255,.85);
+    box-shadow:0 8px 26px rgba(0,0,0,.5), 0 0 26px rgba(99,212,255,.4);
+    background:linear-gradient(120deg,rgba(30,70,135,.85),rgba(12,28,58,.85));
+  }
+  a.link:hover .ic{transform:scale(1.12) rotate(-4deg)}
+  .ic{
+    width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;
+    border-radius:10px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    transition:.28s ease;
+  }
+  .ic svg{width:21px;height:21px;fill:#d9f1ff}
+  .txt{flex:1;min-width:0}
+  .txt b{display:block;font-size:15.5px;font-weight:600;letter-spacing:.4px}
+  .txt span{display:block;font-size:12.5px;color:var(--muted);font-weight:300}
+  .arrow{color:#8fe3ff;font-size:19px;transition:.28s}
+  a.link:hover .arrow{transform:translateX(5px)}
+
+  /* ---------- bölüm başlıkları ---------- */
+  .ttl{
+    font-family:'Caveat',cursive;font-size:34px;text-align:center;
+    margin-bottom:16px;letter-spacing:1px;
+    text-shadow:0 0 16px rgba(120,215,255,.65);
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .ttl::before,.ttl::after{content:"";height:1px;flex:1;max-width:70px;background:linear-gradient(90deg,transparent,var(--line-soft))}
+  .ttl::after{background:linear-gradient(270deg,transparent,var(--line-soft))}
+
+  /* ---------- hakkında ---------- */
+  .about p{font-size:14.5px;color:#cfe2f7;font-weight:300;text-align:center}
+  .about p+p{margin-top:10px}
+  .heart{color:#ff9ec4}
+
+  /* ---------- program ---------- */
+  .sched{display:flex;flex-direction:column;gap:10px}
+  .row{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:rgba(6,15,34,.7);border:1px solid rgba(120,200,255,.25);
+    border-radius:10px;padding:11px 16px;font-size:14.5px;
+  }
+  .row b{font-weight:600;letter-spacing:1.5px}
+  .row span{color:#8fe3ff;font-variant-numeric:tabular-nums;letter-spacing:1px}
+  .sched .note{text-align:center;font-family:'Caveat',cursive;font-size:24px;color:#cfe9ff;margin-top:4px;text-shadow:0 0 12px rgba(120,215,255,.5)}
+
+  /* ---------- kurallar ---------- */
+  .rules{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .rules li{font-size:14px;color:#cfe2f7;font-weight:300;display:flex;gap:10px;align-items:flex-start}
+  .rules li::before{content:"✦";color:#8fe3ff;flex:0 0 auto;line-height:1.6}
+
+  /* ---------- destek / bağış ---------- */
+  /* ---------- bahşiş kartı ---------- */
+  .gift{position:relative;overflow:hidden;text-align:left}
+  .gift .ttl{justify-content:flex-start;text-align:left}
+  .gift .ttl::before{display:none}
+  .gift .ttl::after{flex:1;max-width:none}
+  .gift .gico{width:27px;height:27px;fill:none;stroke:#dff3ff;stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px rgba(140,220,255,.75))}
+  .gift p{font-size:14.5px;color:#dbeaff;font-weight:300;line-height:1.7;
+    text-shadow:0 1px 8px rgba(0,0,0,.6);padding-right:78px}
+  .gift .sign{font-family:'Caveat',cursive;font-size:25px;color:#d5efff;margin-top:14px;
+    text-shadow:0 0 13px rgba(120,215,255,.55);display:block;padding-right:78px}
+  .gift .cmoon{position:absolute;right:4px;bottom:4px;width:84px;height:84px;
+    pointer-events:none;animation:float 8s ease-in-out infinite;overflow:visible}
+  @media(max-width:520px){
+    .gift p,.gift .sign{padding-right:66px}
+    .gift .cmoon{width:64px;height:64px}
+  }
+
+  /* ---------- pc setup ---------- */
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+  .spec b{display:block;font-size:11px;letter-spacing:1.6px;color:#8fe3ff;text-transform:uppercase}
+  .spec span{display:block;font-size:13.5px;color:#cfe2f7;font-weight:300}
+  @media(max-width:460px){.specs{grid-template-columns:1fr}}
+
+  /* ---------- yayın arayüzü ---------- */
+  .stream-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:2px;
+    text-transform:uppercase;padding:6px 14px;border-radius:999px;font-weight:500;
+  }
+  .badge.live{background:rgba(255,50,80,.16);border:1px solid rgba(255,85,115,.7);color:#ff9db1;
+    box-shadow:0 0 18px rgba(255,60,90,.4);animation:beat 1.6s ease-in-out infinite}
+  .badge.off{background:rgba(120,160,200,.1);border:1px solid rgba(140,180,220,.4);color:#9fc2e4}
+  .badge.check{background:rgba(140,215,255,.1);border:1px solid rgba(140,215,255,.35);color:#a9dcff}
+  @keyframes beat{0%,100%{box-shadow:0 0 14px rgba(255,60,90,.35)}50%{box-shadow:0 0 26px rgba(255,60,90,.75)}}
+  .smeta{font-size:12.5px;color:var(--muted);letter-spacing:.6px}
+  .smeta b{color:#8fe3ff;font-weight:600}
+
+  .player{
+    position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;
+    border:1px solid rgba(140,215,255,.45);
+    box-shadow:0 0 26px rgba(60,150,230,.32), inset 0 0 40px rgba(4,12,28,.7);
+    background:radial-gradient(circle at 50% 40%, #0d1f3f, #050b1a 70%);
+    display:grid;place-items:center;
+  }
+  .player img{width:100%;height:100%;object-fit:cover;display:block}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5}
+  .play-btn{
+    position:absolute;inset:0;z-index:4;display:grid;place-items:center;cursor:pointer;border:0;
+    background:linear-gradient(0deg,rgba(3,9,22,.8),rgba(3,9,22,.28));transition:.25s;
+  }
+  .play-btn:hover{background:linear-gradient(0deg,rgba(3,9,22,.6),rgba(3,9,22,.12))}
+  .play-circle{
+    width:72px;height:72px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(9,24,54,.72);border:2px solid rgba(165,232,255,.9);
+    box-shadow:0 0 30px rgba(99,212,255,.7);transition:.25s;
+  }
+  .play-btn:hover .play-circle{transform:scale(1.1);box-shadow:0 0 44px rgba(99,212,255,.95)}
+  .play-circle::after{content:"";width:0;height:0;margin-left:6px;
+    border-left:22px solid #eaf9ff;border-top:13px solid transparent;border-bottom:13px solid transparent}
+  .tag-live{
+    position:absolute;top:10px;left:10px;z-index:6;font-size:10.5px;letter-spacing:2px;
+    background:rgba(255,45,75,.92);color:#fff;padding:4px 10px;border-radius:6px;font-weight:600;
+    box-shadow:0 0 16px rgba(255,50,80,.7);
+  }
+  .tag-prev{
+    position:absolute;top:10px;left:10px;z-index:6;font-size:10.5px;letter-spacing:2px;
+    background:rgba(10,26,56,.88);border:1px solid rgba(140,215,255,.45);color:#a9dcff;
+    padding:4px 10px;border-radius:6px;font-weight:600;
+  }
+  .viewers{
+    position:absolute;bottom:10px;left:10px;z-index:6;font-size:11.5px;letter-spacing:.8px;
+    background:rgba(4,12,28,.78);border:1px solid rgba(140,215,255,.4);color:#cfe9ff;
+    padding:4px 11px;border-radius:999px;backdrop-filter:blur(4px);
+  }
+  .player .empty{
+    text-align:center;padding:26px 16px;color:#9fc2e4;font-size:13.5px;font-weight:300;
+  }
+  .player .empty .big{font-family:'Caveat',cursive;font-size:30px;color:#d5efff;display:block;
+    text-shadow:0 0 14px rgba(120,215,255,.6);margin-bottom:4px}
+
+  .sfoot{margin-top:13px}
+  .stitle{font-size:14.5px;color:#e6f3ff;font-weight:400;line-height:1.5}
+  .stitle.muted{color:#9fc2e4;font-weight:300;font-size:13.5px}
+  .srow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:11px}
+  .chip{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#8fe3ff;
+    border:1px solid rgba(140,215,255,.4);background:rgba(30,80,140,.22);padding:5px 12px;border-radius:999px}
+  .btn{
+    text-decoration:none;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;
+    padding:10px 20px;border-radius:10px;color:#04101f;
+    background:linear-gradient(120deg,#a8e6ff,#5ec2f5);
+    box-shadow:0 6px 20px rgba(70,180,240,.35);transition:.25s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(90,200,255,.55)}
+  .btn.ghost{background:transparent;color:#a9dcff;border:1px solid rgba(140,215,255,.5);box-shadow:none}
+  .btn.ghost:hover{background:rgba(60,140,220,.18);box-shadow:0 0 18px rgba(99,212,255,.35)}
+
+  /* ---------- alt bilgi ---------- */
+  footer{
+    text-align:center;margin-top:34px;color:#6d8aad;font-size:12.5px;letter-spacing:1px;
+    animation:rise .7s ease both;
+  }
+  footer .fh{font-family:'Caveat',cursive;font-size:24px;color:#cfe9ff;text-shadow:0 0 12px rgba(120,215,255,.5);margin-bottom:6px}
+  .credit{
+    display:inline-flex;align-items:center;gap:9px;margin-top:10px;
+    font-size:12.5px;letter-spacing:3.2px;text-transform:uppercase;font-weight:500;
+    padding:9px 22px;border-radius:999px;position:relative;overflow:hidden;
+    background:linear-gradient(140deg,rgba(18,44,86,.7),rgba(8,18,40,.7));
+    border:1px solid rgba(140,215,255,.32);
+    box-shadow:0 0 18px rgba(60,150,230,.22), inset 0 0 22px rgba(20,60,120,.3);
+    text-decoration:none;
+  }
+  .credit b{
+    font-weight:600;letter-spacing:1.6px;text-transform:none;font-size:13.5px;
+    background:linear-gradient(90deg,#8fe3ff 0%,#ffffff 35%,#8fe3ff 60%,#4aa8e0 100%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmer 4.5s linear infinite;
+    filter:drop-shadow(0 0 8px rgba(120,215,255,.65));
+  }
+  .credit::before{ /* üzerinde geçen ışıltı */
+    content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;
+    background:linear-gradient(100deg,transparent,rgba(190,240,255,.45),transparent);
+    transform:skewX(-20deg);animation:sweep 4.2s ease-in-out infinite;
+  }
+  .credit .cs{color:#8fe3ff;font-size:11px;text-shadow:0 0 10px rgba(140,225,255,.9);animation:twinkle 2.4s ease-in-out infinite}
+  .credit:hover{border-color:rgba(180,235,255,.75);box-shadow:0 0 26px rgba(99,212,255,.45), inset 0 0 26px rgba(30,80,150,.4);transform:translateY(-2px)}
+  @keyframes shimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
+  @keyframes sweep{0%{left:-60%}55%{left:130%}100%{left:130%}}
+
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}
+  .d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.4s}
+  .d7{animation-delay:.47s}.d8{animation-delay:.54s}
+
+  @media(max-width:520px){
+    .moon{width:62px;height:62px;top:2vh;right:3vw;opacity:.75}
+    .moon::after{width:60px;height:60px;top:-6px;left:-11px}
+    .name{font-size:44px}
+    .avatar-wrap{width:128px;height:128px}
+    .wrap{padding-top:38px}
+    .play-circle{width:58px;height:58px}
+    .srow .btn{width:100%;text-align:center}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<!-- hilal ay -->
+<svg class="moon" viewBox="0 0 100 100" aria-hidden="true">
+  <defs>
+    <radialGradient id="mGrad" cx="38%" cy="36%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e3f5ff"/>
+      <stop offset="78%" stop-color="#a9d7f3"/>
+      <stop offset="100%" stop-color="#6fb2dc"/>
+    </radialGradient>
+    <mask id="mCrescent">
+      <rect width="100" height="100" fill="#000"/>
+      <circle cx="50" cy="50" r="41" fill="#fff"/>
+      <circle cx="70" cy="34" r="38" fill="#000"/>
+    </mask>
+    <filter id="mGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g mask="url(#mCrescent)" filter="url(#mGlow)">
+    <circle cx="50" cy="50" r="41" fill="url(#mGrad)"/>
+    <circle cx="37" cy="59" r="6.5" fill="rgba(115,180,220,.42)"/>
+    <circle cx="29" cy="43" r="4" fill="rgba(115,180,220,.36)"/>
+    <circle cx="45" cy="72" r="3.4" fill="rgba(115,180,220,.34)"/>
+    <circle cx="33" cy="71" r="2.2" fill="rgba(115,180,220,.3)"/>
+  </g>
+</svg>
+
+<div class="wrap">
+
+  <!-- PROFİL -->
+  <header class="profile">
+    <div class="avatar-wrap">
+      <span class="spark a">✦</span><span class="spark b">✧</span>
+      <span class="spark c">✦</span><span class="spark d">✧</span>
+      <div class="avatar-ring">
+        <span class="fallback">L</span>
+        <img class="avatar" src="avatar.png" alt="Lorelsee profil fotoğrafı"
+             onerror="this.style.display='none'">
+      </div>
+    </div>
+    <h1 class="name">Lorelsee</h1>
+    <div class="handle">@lorelsee<span id="followers"></span></div>
+    <a class="kickbtn" href="https://kick.com/lorelsee" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v6H3V3zm0 6h3v6H3V9zm3 6H3v6h6v-6H6zm6-12h6v6h-6V3zm6 0h3v6h-3V3zm-6 6h3v6h-3V9zm3 6h-3v6h6v-6h-3z"/></svg>
+      Kick Kanalına Git
+    </a>
+  </header>
+
+  <!-- YAYIN ARAYÜZÜ -->
+  <section class="card stream d1">
+    <div class="ttl">Yayın <span class="heart">♡</span></div>
+    <div class="stream-head">
+      <span class="badge check" id="sBadge"><span class="dot" style="background:#8fe3ff;box-shadow:0 0 10px #8fe3ff"></span> Durum kontrol ediliyor</span>
+      <span class="smeta" id="sMeta">Kick kanalı sorgulanıyor…</span>
+    </div>
+    <div class="player" id="sPlayer">
+      <div class="empty"><span class="big">Yayın durumu yükleniyor</span>Lütfen bekleyin…</div>
+    </div>
+    <div class="sfoot" id="sFoot"></div>
+  </section>
+
+  <!-- ANA LİNKLER -->
+  <nav>
+    <a class="link d1" href="https://kick.com/lorelsee" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h6v6H3V3zm0 6h3v6H3V9zm3 6H3v6h6v-6H6zm6-12h6v6h-6V3zm6 0h3v6h-3V3zm-6 6h3v6h-3V9zm3 6h-3v6h6v-6h-3z"/></svg></span>
+      <span class="txt"><b>KICK</b><span>Yayına katıl · kick.com/lorelsee</span></span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="link d2" href="https://instagram.com/lorelsee" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.6 9.9 2.6 10.3 2.6 12s0 2.1.1 3.3c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-3.3s0-2.1-.1-3.3c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg></span>
+      <span class="txt"><b>INSTAGRAM</b><span>@lorelsee</span></span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="link d3" href="https://tiktok.com/@lorelsee" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M16.6 5.8c-1-.7-1.7-1.8-1.9-3.1h-3.1v13c0 1.4-1.1 2.5-2.5 2.5S6.6 17.1 6.6 15.7s1.1-2.5 2.5-2.5c.3 0 .5 0 .8.1V10c-.3 0-.5-.1-.8-.1-3.1 0-5.6 2.5-5.6 5.6S6 21.1 9.1 21.1s5.6-2.5 5.6-5.6V9.1c1.2.9 2.7 1.4 4.3 1.4V7.4c-.8 0-1.6-.2-2.4-.6z"/></svg></span>
+      <span class="txt"><b>TIKTOK</b><span>@lorelsee</span></span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="link d4" href="https://www.youtube.com/@Lorelsee" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C19.2 4.8 12 4.8 12 4.8s-7.2 0-8.8.4c-.9.2-1.6.9-1.8 1.8C1 8.6 1 12 1 12s0 3.4.4 5c.2.9.9 1.6 1.8 1.8 1.6.4 8.8.4 8.8.4s7.2 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.3V8.7l6 3.3-6 3.3z"/></svg></span>
+      <span class="txt"><b>YOUTUBE</b><span>Lorelsee</span></span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="link d5" href="https://discord.gg/J7gtsfmt3e" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3l-.2.4c1.6.4 3 1.1 4.3 2a14.5 14.5 0 00-12.9 0c1.3-.9 2.7-1.6 4.3-2L10.7 3a19.8 19.8 0 00-4.9 1.4C2.7 9 1.8 13.5 2.3 17.9a20 20 0 006 3l.8-1.4c-.9-.3-1.7-.7-2.5-1.2l.5-.4a14.2 14.2 0 0012 0l.5.4c-.8.5-1.6.9-2.5 1.2l.8 1.4c2.2-.7 4.3-1.7 6-3 .5-5.1-.8-9.6-3.6-13.5zM9.3 15.3c-1 0-1.7-.9-1.7-2s.8-2 1.7-2 1.8.9 1.7 2c0 1.1-.8 2-1.7 2zm5.4 0c-1 0-1.7-.9-1.7-2s.8-2 1.7-2 1.8.9 1.7 2c0 1.1-.7 2-1.7 2z"/></svg></span>
+      <span class="txt"><b>DISCORD</b><span>Sunucuya katıl</span></span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="link d6" href="https://kick.com/lorelsee" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 10.6l4.2 2.4-1 1.7-5.2-3V6h2v6.6z"/></svg></span>
+      <span class="txt"><b>DESTEK OL · BAĞIŞ</b><span>Yayınıma destek olmak istersen</span></span>
+      <span class="arrow">›</span>
+    </a>
+  </nav>
+
+  <!-- HAKKIMDA -->
+  <section class="card about d2">
+    <div class="ttl">Hakkımda ♡</div>
+    <p>Merhaba! Ben <b>Lorelsee</b> <span class="heart">♡</span><br>
+       Oyun oynamayı, sohbet etmeyi ve yayıncılarla tanışmayı çok seviyorum.</p>
+    <p>Burada birlikte eğleniyor, güzel anlar biriktiriyoruz!</p>
+    <p class="sign" style="font-family:'Caveat',cursive;font-size:24px;color:#cfe9ff;margin-top:10px">Seni de aramızda görmek isterim <span class="heart">♡</span></p>
+  </section>
+
+  <!-- YAYIN PROGRAMI -->
+  <section class="card d3">
+    <div class="ttl">Yayın Programı</div>
+    <div class="sched">
+      <div class="row"><b>ÇARŞAMBA</b><span>20.30 – 22.30</span></div>
+      <div class="row"><b>CUMA</b><span>21.00 – 23.30</span></div>
+      <div class="row"><b>PAZAR</b><span>20.00 – 22.30</span></div>
+      <div class="note">Gelin ve bize katılın <span class="heart">♡</span></div>
+    </div>
+  </section>
+
+  <!-- YAYIN KURALLARI -->
+  <section class="card d4">
+    <div class="ttl">Yayın Kuralları</div>
+    <ul class="rules">
+      <li>Saygılı ol</li>
+      <li>Küfür / hakaret yok</li>
+      <li>Spoiler yok</li>
+      <li>Reklam / spam yok</li>
+      <li>Keyifli ol, gerisi kendiliğinden gelir <span class="heart">♡</span></li>
+    </ul>
+  </section>
+
+  <!-- PC SETUP -->
+  <section class="card d5">
+    <div class="ttl">PC Setup</div>
+    <div class="specs">
+      <div class="spec"><b>İşlemci</b><span>Ryzen 7 7700X</span></div>
+      <div class="spec"><b>SSD</b><span>Samsung 980 PRO 1TB</span></div>
+      <div class="spec"><b>Ekran Kartı</b><span>Radeon RX 7800 XT</span></div>
+      <div class="spec"><b>Monitör</b><span>24" 240Hz</span></div>
+      <div class="spec"><b>Ana Kart</b><span>MSI PRO B650M-P</span></div>
+      <div class="spec"><b>Power</b><span>ASUS 850 W</span></div>
+      <div class="spec"><b>RAM</b><span>32GB DDR5</span></div>
+      <div class="spec"><b>Kasa</b><span>RGB Fanlı</span></div>
+    </div>
+  </section>
+
+  <!-- BAHŞİŞ -->
+  <section class="card gift d6">
+    <svg class="cmoon" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id="mGrad2" cx="36%" cy="34%" r="75%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="45%" stop-color="#e3f5ff"/>
+          <stop offset="78%" stop-color="#a9d7f3"/>
+          <stop offset="100%" stop-color="#6fb2dc"/>
+        </radialGradient>
+        <mask id="mCrescent2">
+          <rect width="100" height="100" fill="#000"/>
+          <circle cx="50" cy="50" r="41" fill="#fff"/>
+          <circle cx="72" cy="32" r="38" fill="#000"/>
+        </mask>
+        <filter id="mGlow2" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g mask="url(#mCrescent2)" filter="url(#mGlow2)">
+        <circle cx="50" cy="50" r="41" fill="url(#mGrad2)"/>
+        <circle cx="36" cy="58" r="6.5" fill="rgba(115,180,220,.42)"/>
+        <circle cx="28" cy="42" r="4" fill="rgba(115,180,220,.36)"/>
+        <circle cx="44" cy="72" r="3.4" fill="rgba(115,180,220,.34)"/>
+      </g>
+    </svg>
+
+    <div class="ttl">
+      <svg class="gico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3.5 11.5h17V21h-17zM2.5 7.5h19v4h-19zM12 7.5V21M12 7.5C10.4 4.6 8.2 3.4 6.7 4 5.2 4.6 5.5 6.6 7 7.5M12 7.5c1.6-2.9 3.8-4.1 5.3-3.5 1.5.6 1.2 2.6-.3 3.5"/>
+        <path d="M9 4.4l1.6-2.1h2.8L15 4.4"/>
+      </svg>
+      Bahşiş <span class="heart">♡</span>
+    </div>
+    <p>Yayınlarıma destek olmak istersen bağış yapabilir veya abone olabilirsin.</p>
+    <span class="sign">Her türlü desteğin için teşekkür ederim! <span class="heart">♡</span></span>
+  </section>
+
+  <footer>
+    <div class="fh">Seni de aramızda görmek isterim <span class="heart">♡</span></div>
+    <span class="credit"><span class="cs">✦</span> Developed by <b>NieVes</b> <span class="cs">✦</span></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var q = (location.search.match(/[?&]ch=([a-zA-Z0-9_-]+)/) || [])[1];
+  var CH = q || 'lorelsee';
+  var API = 'https://kick.com/api/v2/channels/' + CH;
+  var CACHE = 'lorelsee_status_v1';
+  var playing = false;
+  var $ = function(id){ return document.getElementById(id); };
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function num(n){ try{ return new Intl.NumberFormat('tr-TR').format(n||0); }catch(e){ return n; } }
+  function when(iso){
+    if(!iso) return '';
+    var s = String(iso);
+    var d = new Date(s.indexOf('T') > -1 || s.indexOf('+') > -1 ? s : s.replace(' ','T') + 'Z');
+    if(isNaN(d.getTime())) return '';
+    try{
+      return new Intl.DateTimeFormat('tr-TR',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(d);
+    }catch(e){ return s; }
+  }
+  function kickUrl(){ return 'https://kick.com/' + CH; }
+
+  function startPlay(){
+    playing = true;
+    $('sPlayer').innerHTML =
+      '<iframe src="https://player.kick.com/' + CH + '?autoplay=true&amp;muted=true" ' +
+      'allowfullscreen="true" scrolling="no" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" ' +
+      'title="Lorelsee canlı yayını"></iframe>';
+  }
+
+  function render(ch, videos){
+    if(!ch) return;
+    var f = $('followers');
+    if(f) f.textContent = ch.followers_count ? ' · ' + num(ch.followers_count) + ' takipçi' : '';
+
+    var ls = ch.livestream && ch.livestream.is_live ? ch.livestream : null;
+    var badge = $('sBadge'), meta = $('sMeta'), player = $('sPlayer'), foot = $('sFoot');
+
+    if(ls){
+      badge.className = 'badge live';
+      badge.innerHTML = '<span class="dot"></span> CANLI';
+      meta.innerHTML = '<b>' + num(ls.viewer_count) + '</b> izleyici şu an yayında';
+      if(playing && player.querySelector('iframe')) return; /* izlerken bozma */
+      playing = false;
+      var th = (ls.thumbnail && ls.thumbnail.url) || '';
+      player.innerHTML =
+        (th ? '<img src="' + esc(th) + '" alt="Canlı yayın önizlemesi" onerror="this.style.display=\'none\'">' : '') +
+        (th ? '<button class="play-btn" id="playBtn" aria-label="Yayını oynat"><span class="play-circle"></span></button>' : '') +
+        '<span class="tag-live">CANLI</span>' +
+        '<span class="viewers">👁 ' + num(ls.viewer_count) + ' izleyici</span>';
+      var pb = $('playBtn');
+      if(pb) pb.onclick = startPlay;
+      var cat = (ls.categories && ls.categories[0] && ls.categories[0].name) || '';
+      foot.innerHTML =
+        '<div class="stitle">' + esc(ls.session_title) + '</div>' +
+        '<div class="srow">' +
+          (cat ? '<span class="chip">' + esc(cat) + '</span>' : '<span></span>') +
+          '<a class="btn" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'te Aç</a>' +
+        '</div>';
+      return;
+    }
+
+    /* ---- çevrimdışı: önceki yayın ---- */
+    playing = false;
+    badge.className = 'badge off';
+    badge.innerHTML = 'ÇEVRİMDIŞI';
+    var list = (videos || []).filter(function(v){ return !v.is_live; });
+    var prev = list[0] || null;
+    meta.innerHTML = prev ? 'Son yayın: ' + when(prev.created_at) : 'Yayın programına göz at';
+
+    var img = prev && prev.thumbnail && prev.thumbnail.src ? prev.thumbnail.src
+            : (ch.offline_banner_image && (ch.offline_banner_image.src || '')) || '';
+    player.innerHTML =
+      (img ? '<img src="' + esc(img) + '" alt="Önceki yayın" onerror="this.style.display=\'none\'">' :
+              '<div class="empty"><span class="big">Şu an yayında değiliz</span>Yakında görüşürüz!</div>') +
+      '<span class="tag-prev">ÖNCEKİ YAYIN</span>';
+    player.style.cursor = 'pointer';
+    player.onclick = function(){ window.open(kickUrl(), '_blank', 'noopener'); };
+
+    if(prev){
+      foot.innerHTML =
+        '<div class="stitle">' + esc(prev.session_title) + '</div>' +
+        '<div class="srow">' +
+          '<span class="chip">' + num(prev.views) + ' görüntülenme</span>' +
+          '<a class="btn ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kanala Git</a>' +
+        '</div>';
+    }else{
+      foot.innerHTML =
+        '<div class="stitle muted">Yayın programına göz at, birlikte eğlenelim ' + '♡' + '</div>' +
+        '<div class="srow"><span></span><a class="btn ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kanala Git</a></div>';
+    }
+  }
+
+  function fallback(msg){
+    playing = false;
+    var badge = $('sBadge'), meta = $('sMeta'), player = $('sPlayer'), foot = $('sFoot');
+    badge.className = 'badge check';
+    badge.innerHTML = '<span class="dot" style="background:#8fe3ff;box-shadow:0 0 10px #8fe3ff"></span> Durum bilinmiyor';
+    meta.textContent = msg || 'Bağlantı kurulamadı';
+    player.style.cursor = 'default';
+    player.onclick = null;
+    player.innerHTML = '<div class="empty"><span class="big">Yayın durumu alınamadı</span>Kick kanalına giderek kontrol edebilirsin.</div>';
+    foot.innerHTML = '<div class="srow"><span></span><a class="btn ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'e Git</a></div>';
+  }
+
+  async function load(){
+    try{
+      var r = await fetch(API, {cache:'no-store'});
+      if(!r.ok) throw new Error('http ' + r.status);
+      var ch = await r.json();
+      var videos = [];
+      try{
+        var vr = await fetch(API + '/videos', {cache:'no-store'});
+        if(vr.ok) videos = await vr.json();
+      }catch(e){}
+      try{ localStorage.setItem(CACHE, JSON.stringify({ch:ch, v:videos, t:Date.now()})); }catch(e){}
+      render(ch, videos);
+    }catch(e){
+      try{
+        var o = JSON.parse(localStorage.getItem(CACHE) || 'null');
+        if(o && o.ch){ render(o.ch, o.v || []); $('sMeta').innerHTML = $('sMeta').innerHTML + ' · önbellek'; }
+        else fallback('İnternet bağlantısı yok');
+      }catch(x){ fallback(); }
+    }
+  }
+
+  load();
+  setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>
