@@ -30,13 +30,28 @@
   body{
     font-family:'Poppins',system-ui,sans-serif;
     background:
-      radial-gradient(1200px 600px at 50% -10%, #12244a 0%, transparent 60%),
-      radial-gradient(900px 500px at 90% 20%, #0d1c3d 0%, transparent 55%),
-      var(--bg);
+      radial-gradient(1000px 540px at 50% -8%, #173363 0%, rgba(23,51,99,0) 62%),
+      radial-gradient(780px 500px at 6% 20%, #102247 0%, rgba(16,34,71,0) 60%),
+      radial-gradient(950px 720px at 96% 68%, #0d1c3e 0%, rgba(13,28,62,0) 65%),
+      linear-gradient(180deg,#071026 0%, #050a17 48%, #03060f 100%);
     color:var(--text);
     min-height:100vh;
     overflow-x:hidden;
     line-height:1.6;
+  }
+  /* yumuşak aurora şeridi */
+  body::before{
+    content:"";position:fixed;top:-24vh;left:-14vw;width:128vw;height:64vh;z-index:0;pointer-events:none;
+    background:linear-gradient(112deg, transparent 28%,
+      rgba(70,165,255,.12) 44%, rgba(125,95,225,.10) 56%, transparent 72%);
+    filter:blur(46px);transform:rotate(-7deg);
+    animation:aurora 16s ease-in-out infinite alternate;
+  }
+  @keyframes aurora{from{opacity:.55;transform:rotate(-7deg) translateY(0)}to{opacity:1;transform:rotate(-4deg) translateY(26px)}}
+  /* vinyet — kenarları karartır, derinlik verir */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(118% 88% at 50% 34%, rgba(2,5,14,0) 52%, rgba(2,5,14,.72) 100%);
   }
   /* ---------- yıldızlar ---------- */
   .stars,.stars2{
@@ -66,7 +81,7 @@
   @keyframes twinkle{from{opacity:.35}to{opacity:1}}
 
   .moon{
-    position:fixed;top:5vh;right:6vw;width:96px;height:96px;z-index:0;pointer-events:none;
+    position:fixed;top:6vh;right:7vw;width:96px;height:96px;z-index:2;pointer-events:none;
     animation:float 9s ease-in-out infinite;overflow:visible;
   }
   @keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(14px) rotate(2deg)}}
@@ -83,19 +98,17 @@
     position:relative;width:146px;height:146px;margin:0 auto 16px;
     display:grid;place-items:center;
   }
-  .avatar-wrap::before{ /* dönen ışıltılı halka */
-    content:"";position:absolute;inset:-7px;border-radius:50%;
-    background:conic-gradient(from 0deg, transparent 0 58%, #7fdcff 72%, #ffffff 82%, #7fdcff 92%, transparent 100%);
-    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-            mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-    animation:spin 7s linear infinite;
-    filter:drop-shadow(0 0 6px rgba(140,225,255,.95));
+  .avatar-wrap::before{ /* sabit çift halka */
+    content:"";position:absolute;inset:-9px;border-radius:50%;
+    border:1.5px solid rgba(165,232,255,.55);
+    box-shadow:0 0 26px rgba(70,170,255,.42), 0 0 64px rgba(45,135,230,.28),
+               inset 0 0 20px rgba(60,150,230,.3);
   }
-  .avatar-wrap::after{ /* nefes alan dış hale */
-    content:"";position:absolute;inset:-18px;border-radius:50%;
-    border:1px solid rgba(140,220,255,.35);
-    box-shadow:0 0 26px rgba(70,170,255,.28) inset, 0 0 26px rgba(70,170,255,.22);
-    animation:halo 3.4s ease-in-out infinite;
+  .avatar-wrap::after{ /* dış ince halka + yumuşak nefes */
+    content:"";position:absolute;inset:-20px;border-radius:50%;
+    border:1px solid rgba(140,220,255,.28);
+    background:radial-gradient(circle, rgba(60,150,240,.14) 38%, rgba(60,150,240,0) 72%);
+    animation:halo 3.6s ease-in-out infinite;
   }
   .avatar-ring{
     position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;
@@ -118,7 +131,6 @@
   .spark.b{top:24px;right:-4px;font-size:11px;animation-delay:.7s}
   .spark.c{bottom:8px;left:-6px;font-size:12px;animation-delay:1.3s}
   .spark.d{bottom:-2px;right:22px;font-size:16px;animation-delay:1.9s}
-  @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes halo{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.06);opacity:1}}
   .name{
     font-family:'Caveat',cursive;font-size:52px;line-height:1;
