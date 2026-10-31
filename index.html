@@ -475,7 +475,7 @@
   .ic.tiktok{background:rgba(160,200,255,.11)}  .ic.tiktok svg{fill:#cfe2ff}
   .ic.yt{background:rgba(245,147,163,.12)}      .ic.yt svg{fill:#f4b2be}
   .ic.discord{background:rgba(166,151,245,.14)} .ic.discord svg{fill:#c2b7ff}
-  .ic.gift{background:rgba(226,190,240,.13)}    .ic.gift svg{fill:none;stroke:#e6c6f2;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ic.donate{background:rgba(226,190,240,.13)}  .ic.donate svg{fill:none;stroke:#e6c6f2;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
   /* ---------- program ---------- */
   .sched{display:flex;flex-direction:column;gap:10px}
@@ -506,7 +506,10 @@
     background:rgba(160,120,220,.14);border:1px solid rgba(200,170,240,.28);
     border-radius:16px;padding:12px 16px;font-size:13px;color:#e2d7f2;
   }
-  .next-stream .ns-ico{font-size:17px;animation:float 7s ease-in-out infinite}
+  .next-stream .ns-ico{
+    width:19px;height:19px;flex:0 0 19px;
+    fill:#c9b6ee;filter:drop-shadow(0 0 6px rgba(190,160,240,.5));
+  }
   .next-stream b{color:#fff;font-weight:600}
 
   /* ---------- hakkımda ---------- */
@@ -791,7 +794,7 @@
       </a>
 
       <a class="social" data-celebrate href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener">
-        <span class="ic gift"><svg viewBox="0 0 24 24"><path d="M3.5 11.5h17V21h-17zM2.5 7.5h19v4h-19zM12 7.5V21M12 7.5C10.4 4.6 8.2 3.4 6.7 4 5.2 4.6 5.5 6.6 7 7.5M12 7.5c1.6-2.9 3.8-4.1 5.3-3.5 1.5.6 1.2 2.6-.3 3.5"/></svg></span>
+        <span class="ic donate"><svg viewBox="0 0 24 24"><path d="M3.5 11.5h17V21h-17zM2.5 7.5h19v4h-19zM12 7.5V21M12 7.5C10.4 4.6 8.2 3.4 6.7 4 5.2 4.6 5.5 6.6 7 7.5M12 7.5c1.6-2.9 3.8-4.1 5.3-3.5 1.5.6 1.2 2.6-.3 3.5"/></svg></span>
         <span class="txt"><b>Bağış · Destek</b><span>Yayınıma destek olmak istersen</span></span>
         <span class="arrow">›</span>
       </a>
@@ -811,7 +814,7 @@
       <div class="row" data-dow="0"><b>PAZAR</b><span class="times">20.00 – 22.30</span></div>
     </div>
     <div class="next-stream" id="nextStream">
-      <span class="ns-ico">☾</span>
+      <svg class="ns-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       <span>Sıradaki yayın hesaplanıyor…</span>
     </div>
     <div class="sched-note">Gelin ve bize katılın <span class="heart">♡</span></div>
@@ -950,16 +953,18 @@
     return null;
   }
 
+  var MOON_ICO = '<svg class="ns-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+
   function renderNextStream(){
     var box = document.getElementById('nextStream');
     if (!box) return;
     var n = nextStream();
-    if (!n){ box.innerHTML = '<span class="ns-ico">☾</span><span>Program yakında güncellenecek.</span>'; return; }
+    if (!n){ box.innerHTML = MOON_ICO + '<span>Program yakında güncellenecek.</span>'; return; }
     var time = n.slot.start.replace(':', '.');
     var label = n.isToday
       ? 'Sıradaki yayın: <b>Bugün ' + time + '</b>'
       : 'Sıradaki yayın: <b>' + n.slot.name + ' ' + time + '</b>';
-    box.innerHTML = '<span class="ns-ico">☾</span><span>' + label + '</span>';
+    box.innerHTML = MOON_ICO + '<span>' + label + '</span>';
   }
 
   markToday();
