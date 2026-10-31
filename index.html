@@ -151,9 +151,26 @@
   }
   @keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(12px) rotate(2deg)}}
 
-  /* ---------- üst gezinme çubuğu ---------- */
+  /* ---------- üst gezinme çubuğu + canlı bant ---------- */
+  .topstack{position:sticky;top:0;z-index:40}
+  .live-banner{
+    display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;
+    text-decoration:none;color:#ffe7ec;
+    background:linear-gradient(120deg,#8f1f36,#c22745 55%,#8f1f36);
+    border-bottom:1px solid rgba(255,140,165,.35);
+    font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;
+    padding:9px 16px;transition:filter .25s ease;
+  }
+  .live-banner[hidden]{display:none}
+  .live-banner:hover{filter:brightness(1.12)}
+  .lb-dot{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 10px #fff;animation:pulse 1.4s infinite}
+  .lb-text b{color:#fff;font-weight:600}
+  .lb-cta{
+    color:#fff;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 12px;
+  }
+  .live-banner:hover .lb-cta{background:rgba(255,255,255,.28)}
   .topbar{
-    position:sticky;top:0;z-index:40;
     background:rgba(11,18,33,.62);
     -webkit-backdrop-filter:blur(18px) saturate(150%);
     backdrop-filter:blur(18px) saturate(150%);
@@ -381,6 +398,45 @@
     padding:6px 13px;border-radius:999px;
   }
 
+  /* ---------- son yayınlar ---------- */
+  .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .video-card{
+    display:flex;flex-direction:column;text-decoration:none;color:var(--text);
+    background:rgba(7,14,27,.4);border:1px solid rgba(160,185,230,.12);
+    border-radius:18px;overflow:hidden;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .video-card:hover{
+    transform:translateY(-4px);border-color:rgba(169,192,239,.45);
+    box-shadow:0 14px 30px rgba(0,0,0,.3);
+  }
+  .vc-thumb{position:relative;display:block;aspect-ratio:16/9;background:#0a1222;overflow:hidden}
+  .vc-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+  .video-card:hover .vc-thumb img{transform:scale(1.05)}
+  .vc-play{
+    position:absolute;right:9px;bottom:9px;width:28px;height:28px;border-radius:50%;
+    display:grid;place-items:center;font-size:9px;color:#eaf9ff;
+    background:rgba(9,24,54,.72);border:1px solid rgba(165,232,255,.7);
+  }
+  .vc-body{padding:12px 13px;display:flex;flex-direction:column;gap:6px}
+  .vc-body b{
+    font-size:12.5px;font-weight:500;line-height:1.45;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .vc-meta{font-size:10.5px;letter-spacing:.6px;color:var(--muted)}
+
+  /* ---------- konfeti ---------- */
+  .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+  .confetti-bit{
+    position:absolute;will-change:transform,opacity;line-height:1;
+    animation:confetti-fly 1.15s cubic-bezier(.15,.6,.35,1) forwards;
+    text-shadow:0 0 10px rgba(200,230,255,.7);
+  }
+  @keyframes confetti-fly{
+    0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}
+    100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(.55)}
+  }
+
   /* ---------- sosyal linkler ---------- */
   .social-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
   .social{
@@ -556,6 +612,10 @@
     .gift .sign{padding-right:0}
     .cmoon{width:88px;height:88px;right:-6px;bottom:-8px;opacity:.8}
     .row{flex-wrap:wrap;gap:6px}
+    .video-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:420px){
+    .video-grid{grid-template-columns:1fr}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -577,6 +637,7 @@
   <span class="shooting-star"></span><span class="shooting-star"></span>
   <span class="shooting-star"></span><span class="shooting-star"></span>
 </div>
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 
 <!-- hilal ay -->
 <svg class="moon" viewBox="0 0 100 100" aria-hidden="true">
@@ -604,12 +665,19 @@
   </g>
 </svg>
 
-<!-- ÜST BAR -->
-<header class="topbar" id="topbar">
+<!-- ÜST BAR + CANLI BANT -->
+<div class="topstack">
+  <a class="live-banner" id="liveBanner" href="https://kick.com/lorelsee" target="_blank" rel="noopener" hidden>
+    <span class="lb-dot"></span>
+    <span class="lb-text">Şu an canlıyız · <b id="lbViewers">0</b> izleyici</span>
+    <span class="lb-cta">İzle →</span>
+  </a>
+  <header class="topbar" id="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top"><span class="glyph">☾</span> Lorelsee</a>
     <nav class="topnav" id="topnav" aria-label="Sayfa bölümleri">
       <a href="#yayin">Yayın</a>
+      <a href="#videolar">Videolar</a>
       <a href="#linkler">Linkler</a>
       <a href="#program">Program</a>
       <a href="#hakkimda">Hakkımda</a>
@@ -621,6 +689,7 @@
     </a>
   </div>
 </header>
+</div>
 
 <main class="wrap" id="top">
 
@@ -649,7 +718,7 @@
         Kick'te İzle
       </a>
       <a class="btn btn-soft" href="#program">Yayın Programı</a>
-      <a class="btn btn-ghost" href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener">Destek Ol <span class="heart">♡</span></a>
+      <a class="btn btn-ghost" data-celebrate href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener">Destek Ol <span class="heart">♡</span></a>
     </div>
   </section>
 
@@ -671,6 +740,16 @@
       </div>
     </div>
     <div class="sfoot" id="sFoot"></div>
+  </section>
+
+  <!-- SON YAYINLAR -->
+  <section class="card reveal" id="videolar" style="margin-top:22px" hidden>
+    <div class="sec-head">
+      <div class="eyebrow">Arşiv</div>
+      <h2 class="sec-title">Son yayınlar</h2>
+      <p class="sec-sub">Kaçırdıysan buradan yakalayabilirsin.</p>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
   </section>
 
   <!-- LİNKLER -->
@@ -711,7 +790,7 @@
         <span class="arrow">›</span>
       </a>
 
-      <a class="social" href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener">
+      <a class="social" data-celebrate href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener">
         <span class="ic gift"><svg viewBox="0 0 24 24"><path d="M3.5 11.5h17V21h-17zM2.5 7.5h19v4h-19zM12 7.5V21M12 7.5C10.4 4.6 8.2 3.4 6.7 4 5.2 4.6 5.5 6.6 7 7.5M12 7.5c1.6-2.9 3.8-4.1 5.3-3.5 1.5.6 1.2 2.6-.3 3.5"/></svg></span>
         <span class="txt"><b>Bağış · Destek</b><span>Yayınıma destek olmak istersen</span></span>
         <span class="arrow">›</span>
@@ -784,7 +863,7 @@
   </section>
 
   <!-- BAĞIŞ -->
-  <a class="card gift reveal" id="destek" href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener" style="margin-top:22px">
+  <a class="card gift reveal" id="destek" data-celebrate href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener" style="margin-top:22px">
     <svg class="cmoon" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
         <radialGradient id="mGrad2" cx="36%" cy="34%" r="75%">
@@ -916,6 +995,62 @@
     if (hero) hero.classList.toggle('on', !!isLive);
   }
 
+  function showBanner(isLive, viewers){
+    var b = document.getElementById('liveBanner');
+    if (!b) return;
+    b.hidden = !isLive;
+    if (isLive){
+      var v = document.getElementById('lbViewers');
+      if (v) v.textContent = num(viewers);
+    }
+  }
+
+  function renderVideos(videos){
+    var sec = document.getElementById('videolar');
+    var grid = document.getElementById('videoGrid');
+    if (!sec || !grid) return;
+    var list = (videos || []).filter(function(v){ return !v.is_live; }).slice(0, 6);
+    if (!list.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    grid.innerHTML = list.map(function(v){
+      var thumb = (v.thumbnail && (v.thumbnail.src || v.thumbnail.url)) || '';
+      var url = v.share_url || v.url || (kickUrl() + '/videos');
+      return '<a class="video-card" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+        '<span class="vc-thumb">' +
+          (thumb ? '<img src="' + esc(thumb) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+          '<span class="vc-play">▶</span>' +
+        '</span>' +
+        '<span class="vc-body"><b>' + esc(v.session_title || 'Yayın kaydı') + '</b>' +
+        '<span class="vc-meta">' + num(v.views) + ' izlenme · ' + when(v.created_at) + '</span></span></a>';
+    }).join('');
+  }
+
+  /* konfeti / kalp efekti */
+  function burst(x, y){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var layer = document.getElementById('confettiLayer');
+    if (!layer) return;
+    var colors = ['#eab9d7','#c2b7ff','#8fe3ff','#ffd9e0','#b8f0ff'];
+    var glyphs = ['♡','✦','✧','•'];
+    for (var i = 0; i < 16; i++){
+      var bit = document.createElement('span');
+      var angle = Math.random() * Math.PI * 2;
+      var dist = 55 + Math.random() * 125;
+      bit.className = 'confetti-bit';
+      bit.textContent = glyphs[i % glyphs.length];
+      bit.style.left = x + 'px';
+      bit.style.top = y + 'px';
+      bit.style.color = colors[i % colors.length];
+      bit.style.fontSize = (10 + Math.random() * 14) + 'px';
+      bit.style.setProperty('--dx', Math.round(Math.cos(angle) * dist) + 'px');
+      bit.style.setProperty('--dy', Math.round(Math.sin(angle) * dist - 45) + 'px');
+      bit.style.setProperty('--rot', Math.round(Math.random() * 540 - 270) + 'deg');
+      bit.style.animationDelay = (Math.random() * 0.12).toFixed(2) + 's';
+      layer.appendChild(bit);
+      (function(el){ setTimeout(function(){ el.remove(); }, 1500); })(bit);
+    }
+  }
+
   function startPlay(){
     playing = true;
     $('sPlayer').innerHTML =
@@ -926,6 +1061,7 @@
 
   function render(ch, videos){
     if (!ch) return;
+    renderVideos(videos);
     var f = $('followers');
     if (f) f.textContent = ch.followers_count ? num(ch.followers_count) + ' takipçi' : '';
 
@@ -934,6 +1070,7 @@
 
     if (ls){
       setLiveChip(true);
+      showBanner(true, ls.viewer_count);
       badge.className = 'badge live';
       badge.innerHTML = '<span class="dot"></span> CANLI';
       meta.innerHTML = '<b>' + num(ls.viewer_count) + '</b> izleyici şu an yayında';
@@ -963,6 +1100,7 @@
     /* çevrimdışı: önceki yayın */
     playing = false;
     setLiveChip(false);
+    showBanner(false);
     badge.className = 'badge off';
     badge.innerHTML = 'ÇEVRİMDIŞI';
     var list = (videos || []).filter(function(v){ return !v.is_live; });
@@ -995,6 +1133,7 @@
   function fallback(msg){
     playing = false;
     setLiveChip(false);
+    showBanner(false);
     var badge = $('sBadge'), meta = $('sMeta'), player = $('sPlayer'), foot = $('sFoot');
     badge.className = 'badge check';
     badge.innerHTML = '<span class="dot mint"></span> Durum bilinmiyor';
@@ -1073,6 +1212,11 @@
   }else{
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
   }
+
+  /* bağış bağlantılarında konfeti */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-celebrate]'), function(el){
+    el.addEventListener('click', function(ev){ burst(ev.clientX, ev.clientY); });
+  });
 
   load();
   setInterval(load, 60000);
