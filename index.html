@@ -729,4 +729,354 @@
     <div class="sched" id="schedList">
       <div class="row" data-dow="3"><b>ÇARŞAMBA</b><span class="times">20.30 – 22.30</span></div>
       <div class="row" data-dow="5"><b>CUMA</b><span class="times">21.00 – 23.30</span></div>
-      <div class="row" data-dow="0"><b>PAZAR</b><span class="times">20.00 – 22.30</span>
+      <div class="row" data-dow="0"><b>PAZAR</b><span class="times">20.00 – 22.30</span></div>
+    </div>
+    <div class="next-stream" id="nextStream">
+      <span class="ns-ico">☾</span>
+      <span>Sıradaki yayın hesaplanıyor…</span>
+    </div>
+    <div class="sched-note">Gelin ve bize katılın <span class="heart">♡</span></div>
+  </section>
+
+  <!-- HAKKIMDA -->
+  <section class="card about reveal" id="hakkimda" style="margin-top:22px">
+    <div class="sec-head">
+      <div class="eyebrow">Kısaca</div>
+      <h2 class="sec-title">Hakkımda <span class="heart">♡</span></h2>
+    </div>
+    <p>Merhaba! Ben <b>Lorelsee</b> <span class="heart">♡</span><br>
+       Oyun oynamayı, sohbet etmeyi ve yayıncılarla tanışmayı çok seviyorum.</p>
+    <p>Burada birlikte eğleniyor, güzel anlar biriktiriyoruz!</p>
+    <span class="sign">Seni de aramızda görmek isterim <span class="heart">♡</span></span>
+  </section>
+
+  <!-- KURALLAR -->
+  <section class="card reveal" id="kurallar" style="margin-top:22px">
+    <div class="sec-head">
+      <div class="eyebrow">Küçük notlar</div>
+      <h2 class="sec-title">Yayın kuralları</h2>
+    </div>
+    <ul class="rules">
+      <li>Saygılı ol</li>
+      <li>Küfür / hakaret yok</li>
+      <li>Spoiler yok</li>
+      <li>Reklam / spam yok</li>
+      <li class="soft">Keyifli ol, gerisi kendiliğinden gelir <span class="heart">♡</span></li>
+    </ul>
+  </section>
+
+  <!-- PC SETUP -->
+  <section class="card reveal" id="setup" style="margin-top:22px">
+    <div class="sec-head">
+      <div class="eyebrow">Donanım</div>
+      <h2 class="sec-title">PC Setup</h2>
+    </div>
+    <div class="specs">
+      <div class="spec"><b>İşlemci</b><span>Ryzen 7 7700X</span></div>
+      <div class="spec"><b>Ekran Kartı</b><span>Radeon RX 7800 XT</span></div>
+      <div class="spec"><b>RAM</b><span>32GB DDR5</span></div>
+      <div class="spec"><b>SSD</b><span>Samsung 980 PRO 1TB</span></div>
+      <div class="spec"><b>Ana Kart</b><span>MSI PRO B650M-P</span></div>
+      <div class="spec"><b>Monitör</b><span>24" 240Hz</span></div>
+      <div class="spec"><b>Power</b><span>ASUS 850 W</span></div>
+      <div class="spec"><b>Kasa</b><span>RGB Fanlı</span></div>
+    </div>
+  </section>
+
+  <!-- BAĞIŞ -->
+  <a class="card gift reveal" id="destek" href="https://donate.bynogame.com/lorelsee" target="_blank" rel="noopener" style="margin-top:22px">
+    <svg class="cmoon" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id="mGrad2" cx="36%" cy="34%" r="75%">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#e3f5ff"/>
+          <stop offset="78%" stop-color="#a9d7f3"/><stop offset="100%" stop-color="#6fb2dc"/>
+        </radialGradient>
+        <mask id="mCrescent2">
+          <rect width="100" height="100" fill="#000"/>
+          <circle cx="50" cy="50" r="41" fill="#fff"/>
+          <circle cx="72" cy="32" r="38" fill="#000"/>
+        </mask>
+        <filter id="mGlow2" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g mask="url(#mCrescent2)" filter="url(#mGlow2)">
+        <circle cx="50" cy="50" r="41" fill="url(#mGrad2)"/>
+        <circle cx="36" cy="58" r="6.5" fill="rgba(115,180,220,.42)"/>
+        <circle cx="28" cy="42" r="4" fill="rgba(115,180,220,.36)"/>
+        <circle cx="44" cy="72" r="3.4" fill="rgba(115,180,220,.34)"/>
+      </g>
+    </svg>
+    <div class="sec-head">
+      <div class="eyebrow">Destek</div>
+      <h2 class="sec-title">Bahşiş <span class="heart">♡</span></h2>
+    </div>
+    <p>Yayınlarıma destek olmak istersen bağış yapabilir veya abone olabilirsin.</p>
+    <span class="sign">Her türlü desteğin için teşekkür ederim! <span class="heart">♡</span></span>
+    <span class="garrow">Bağış yap →</span>
+  </a>
+
+  <footer>
+    <div class="fh">Seni de aramızda görmek isterim <span class="heart">♡</span></div>
+    <a class="credit" href="https://www.instagram.com/cesurdrnn" target="_blank" rel="noopener" aria-label="Developed by NieVes · Instagram: cesurdrnn">
+      <span class="cs">✦</span> Developed by <b>NieVes</b> <span class="cs">✦</span>
+    </a>
+  </footer>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+
+  /* ---------------- yayın programı ---------------- */
+  var SCHEDULE = [
+    { name:'ÇARŞAMBA', dow:3, start:'20:30', end:'22.30' },
+    { name:'CUMA',     dow:5, start:'21:00', end:'23.30' },
+    { name:'PAZAR',    dow:0, start:'20:00', end:'22.30' }
+  ];
+
+  function markToday(){
+    var now = new Date();
+    var rows = document.querySelectorAll('#schedList .row');
+    Array.prototype.forEach.call(rows, function(row){
+      if (parseInt(row.getAttribute('data-dow'), 10) === now.getDay()){
+        row.classList.add('today');
+        var b = row.querySelector('b');
+        if (b && !b.querySelector('.today-chip')){
+          var chip = document.createElement('span');
+          chip.className = 'today-chip';
+          chip.textContent = 'BUGÜN';
+          b.appendChild(chip);
+        }
+      }
+    });
+  }
+
+  function nextStream(){
+    var now = new Date();
+    for (var i = 0; i < 8; i++){
+      var day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      for (var j = 0; j < SCHEDULE.length; j++){
+        var s = SCHEDULE[j];
+        if (s.dow !== day.getDay()) continue;
+        var hm = s.start.split(':');
+        var start = new Date(day.getFullYear(), day.getMonth(), day.getDate(), +hm[0], +hm[1]);
+        if (start > now){
+          return { slot:s, date:start, isToday:i === 0 };
+        }
+      }
+    }
+    return null;
+  }
+
+  function renderNextStream(){
+    var box = document.getElementById('nextStream');
+    if (!box) return;
+    var n = nextStream();
+    if (!n){ box.innerHTML = '<span class="ns-ico">☾</span><span>Program yakında güncellenecek.</span>'; return; }
+    var time = n.slot.start.replace(':', '.');
+    var label = n.isToday
+      ? 'Sıradaki yayın: <b>Bugün ' + time + '</b>'
+      : 'Sıradaki yayın: <b>' + n.slot.name + ' ' + time + '</b>';
+    box.innerHTML = '<span class="ns-ico">☾</span><span>' + label + '</span>';
+  }
+
+  markToday();
+  renderNextStream();
+
+  /* ---------------- Kick canlı durumu ---------------- */
+  var q = (location.search.match(/[?&]ch=([a-zA-Z0-9_-]+)/) || [])[1];
+  var CH = q || 'lorelsee';
+  var API = 'https://kick.com/api/v2/channels/' + CH;
+  var CACHE = 'lorelsee_status_v2';
+  var playing = false;
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function num(n){ try{ return new Intl.NumberFormat('tr-TR').format(n || 0); }catch(e){ return n; } }
+  function when(iso){
+    if (!iso) return '';
+    var s = String(iso);
+    var d = new Date(s.indexOf('T') > -1 || s.indexOf('+') > -1 ? s : s.replace(' ','T') + 'Z');
+    if (isNaN(d.getTime())) return '';
+    try{
+      return new Intl.DateTimeFormat('tr-TR',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(d);
+    }catch(e){ return s; }
+  }
+  function kickUrl(){ return 'https://kick.com/' + CH; }
+
+  function setLiveChip(isLive){
+    var hero = $('heroLive');
+    if (hero) hero.classList.toggle('on', !!isLive);
+  }
+
+  function startPlay(){
+    playing = true;
+    $('sPlayer').innerHTML =
+      '<iframe src="https://player.kick.com/' + CH + '?autoplay=true&amp;muted=true" ' +
+      'allowfullscreen="true" scrolling="no" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" ' +
+      'title="Lorelsee canlı yayını"></iframe>';
+  }
+
+  function render(ch, videos){
+    if (!ch) return;
+    var f = $('followers');
+    if (f) f.textContent = ch.followers_count ? num(ch.followers_count) + ' takipçi' : '';
+
+    var ls = ch.livestream && ch.livestream.is_live ? ch.livestream : null;
+    var badge = $('sBadge'), meta = $('sMeta'), player = $('sPlayer'), foot = $('sFoot');
+
+    if (ls){
+      setLiveChip(true);
+      badge.className = 'badge live';
+      badge.innerHTML = '<span class="dot"></span> CANLI';
+      meta.innerHTML = '<b>' + num(ls.viewer_count) + '</b> izleyici şu an yayında';
+      if (playing && player.querySelector('iframe')) return;
+      playing = false;
+      var th = (ls.thumbnail && ls.thumbnail.url) || '';
+      player.style.cursor = 'default';
+      player.onclick = null;
+      player.innerHTML =
+        (th ? '<img src="' + esc(th) + '" alt="Canlı yayın önizlemesi" onerror="this.style.display=\'none\'">' :
+              '<div class="empty"><span class="moon-mini">☾</span><span class="big">Yayında!</span>Hemen gel <span class="heart">♡</span></div>') +
+        (th ? '<button class="play-btn" id="playBtn" aria-label="Yayını oynat"><span class="play-circle"></span></button>' : '') +
+        '<span class="tag-live">CANLI</span>' +
+        '<span class="viewers">👁 ' + num(ls.viewer_count) + ' izleyici</span>';
+      var pb = $('playBtn');
+      if (pb) pb.onclick = startPlay;
+      var cat = (ls.categories && ls.categories[0] && ls.categories[0].name) || '';
+      foot.innerHTML =
+        '<div class="stitle">' + esc(ls.session_title) + '</div>' +
+        '<div class="srow">' +
+          (cat ? '<span class="chip">' + esc(cat) + '</span>' : '<span></span>') +
+          '<a class="btn btn-kick" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'te Aç</a>' +
+        '</div>';
+      return;
+    }
+
+    /* çevrimdışı: önceki yayın */
+    playing = false;
+    setLiveChip(false);
+    badge.className = 'badge off';
+    badge.innerHTML = 'ÇEVRİMDIŞI';
+    var list = (videos || []).filter(function(v){ return !v.is_live; });
+    var prev = list[0] || null;
+    meta.innerHTML = prev ? 'Son yayın: ' + when(prev.created_at) : 'Yayın programına göz at';
+
+    var img = prev && prev.thumbnail && prev.thumbnail.src ? prev.thumbnail.src
+            : (ch.offline_banner_image && (ch.offline_banner_image.src || '')) || '';
+    player.innerHTML =
+      (img ? '<img src="' + esc(img) + '" alt="Önceki yayın" onerror="this.style.display=\'none\'">' :
+             '<div class="empty"><span class="moon-mini">☾</span><span class="big">Şu an yayında değiliz</span>Yakında görüşürüz!</div>') +
+      '<span class="tag-prev">ÖNCEKİ YAYIN</span>';
+    player.style.cursor = 'pointer';
+    player.onclick = function(){ window.open(kickUrl(), '_blank', 'noopener'); };
+
+    if (prev){
+      foot.innerHTML =
+        '<div class="stitle">' + esc(prev.session_title) + '</div>' +
+        '<div class="srow">' +
+          '<span class="chip">' + num(prev.views) + ' görüntülenme</span>' +
+          '<a class="btn btn-ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kanala Git</a>' +
+        '</div>';
+    }else{
+      foot.innerHTML =
+        '<div class="stitle muted">Yayın programına göz at, birlikte eğlenelim ♡</div>' +
+        '<div class="srow"><span></span><a class="btn btn-ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kanala Git</a></div>';
+    }
+  }
+
+  function fallback(msg){
+    playing = false;
+    setLiveChip(false);
+    var badge = $('sBadge'), meta = $('sMeta'), player = $('sPlayer'), foot = $('sFoot');
+    badge.className = 'badge check';
+    badge.innerHTML = '<span class="dot mint"></span> Durum bilinmiyor';
+    meta.textContent = msg || 'Bağlantı kurulamadı';
+    player.style.cursor = 'default';
+    player.onclick = null;
+    player.innerHTML = '<div class="empty"><span class="moon-mini">☾</span><span class="big">Yayın durumu alınamadı</span>Kick kanalına giderek kontrol edebilirsin.</div>';
+    foot.innerHTML = '<div class="srow"><span></span><a class="btn btn-ghost" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'e Git</a></div>';
+  }
+
+  async function load(){
+    try{
+      var r = await fetch(API, { cache:'no-store' });
+      if (!r.ok) throw new Error('http ' + r.status);
+      var ch = await r.json();
+      var videos = [];
+      try{
+        var vr = await fetch(API + '/videos', { cache:'no-store' });
+        if (vr.ok) videos = await vr.json();
+      }catch(e){}
+      try{ localStorage.setItem(CACHE, JSON.stringify({ ch:ch, v:videos, t:Date.now() })); }catch(e){}
+      render(ch, videos);
+    }catch(e){
+      try{
+        var o = JSON.parse(localStorage.getItem(CACHE) || 'null');
+        if (o && o.ch){ render(o.ch, o.v || []); var m = $('sMeta'); m.innerHTML = m.innerHTML + ' · önbellek'; }
+        else fallback('İnternet bağlantısı yok');
+      }catch(x){ fallback(); }
+    }
+  }
+
+  /* ---------------- üst bar: gölge + aktif bölüm ---------------- */
+  var topbar = document.getElementById('topbar');
+  function onScroll(){
+    if (window.scrollY > 8) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  if ('IntersectionObserver' in window){
+    var navLinks = document.querySelectorAll('#topnav a');
+    var sections = [];
+    Array.prototype.forEach.call(navLinks, function(link){
+      var id = link.getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if (sec) sections.push({ link:link, sec:sec });
+    });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function(l){ l.classList.remove('active'); });
+        var found = sections.filter(function(s){ return s.sec === entry.target; })[0];
+        if (found) found.link.classList.add('active');
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    sections.forEach(function(s){ spy.observe(s.sec); });
+
+    /* beliriş animasyonu */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold:0.08 });
+      document.querySelectorAll('.reveal').forEach(function(el){
+        if (el.getBoundingClientRect().top >= window.innerHeight) revealObserver.observe(el);
+        else el.classList.add('is-visible');
+      });
+    }else{
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    }
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  load();
+  setInterval(load, 60000);
+})();
+</script>
+</body>
+</html>
