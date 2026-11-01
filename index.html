@@ -357,6 +357,19 @@
   }
   .player img{width:100%;height:100%;object-fit:cover;display:block}
   .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5}
+  /* thumbnail yokken: canlı hissi veren hareketli zemin */
+  .player.no-poster{
+    background:linear-gradient(125deg,#0c1e42 0%,#123063 35%,#0a1730 70%,#0d2450 100%);
+    background-size:220% 220%;
+    animation:liveflow 7s ease-in-out infinite alternate;
+  }
+  .player.no-poster::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(60% 80% at 25% 20%, rgba(95,190,255,.28), transparent 60%),
+               radial-gradient(50% 70% at 85% 85%, rgba(120,95,235,.24), transparent 65%);
+    animation:liveflow 9s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes liveflow{from{background-position:0% 50%}to{background-position:100% 50%}}
   .player .empty{
     text-align:center;padding:28px 18px;color:#9fc2e4;font-size:13.5px;font-weight:300;
     display:grid;gap:8px;justify-items:center;
@@ -1081,17 +1094,18 @@
       meta.innerHTML = '<b>' + num(ls.viewer_count) + '</b> izleyici şu an yayında';
       if (playing && player.querySelector('iframe')) return;
       playing = false;
-      var th = (ls.thumbnail && ls.thumbnail.url) || '';
+      var th = (ls.thumbnail && (ls.thumbnail.url || ls.thumbnail)) || '';
       player.style.cursor = 'default';
       player.onclick = null;
+      player.classList.toggle('no-poster', !th);
       player.innerHTML =
-        (th ? '<img src="' + esc(th) + '" alt="Canlı yayın önizlemesi" onerror="this.style.display=\'none\'">' :
-              '<div class="empty"><span class="moon-mini">☾</span><span class="big">Yayında!</span>Hemen gel <span class="heart">♡</span></div>') +
-        (th ? '<button class="play-btn" id="playBtn" aria-label="Yayını oynat"><span class="play-circle"></span></button>' : '') +
+        (th ? '<img src="' + esc(th) + '" alt="Canlı yayın önizlemesi" onerror="this.style.display=\'none\'">' : '') +
+        '<button class="play-btn" id="playBtn" aria-label="Yayını oynat"><span class="play-circle"></span></button>' +
         '<span class="tag-live">CANLI</span>' +
         '<span class="viewers">👁 ' + num(ls.viewer_count) + ' izleyici</span>';
       var pb = $('playBtn');
-      if (pb) pb.onclick = startPlay;
+      if (pb) pb.onclick = function(e){ e.stopPropagation(); startPlay(); };
+      player.onclick = startPlay; /* alanın herhangi bir yeri tıklanabilir */
       var cat = (ls.categories && ls.categories[0] && ls.categories[0].name) || '';
       foot.innerHTML =
         '<div class="stitle">' + esc(ls.session_title) + '</div>' +
