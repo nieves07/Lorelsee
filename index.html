@@ -370,6 +370,17 @@
     animation:liveflow 9s ease-in-out infinite alternate-reverse;
   }
   @keyframes liveflow{from{background-position:0% 50%}to{background-position:100% 50%}}
+  /* oynatma kontrolleri (ses + otomatik oynat) */
+  .pcontrols{position:absolute;right:10px;bottom:10px;z-index:7;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .pctl{
+    font-family:'Poppins',sans-serif;font-size:11.5px;letter-spacing:.5px;font-weight:500;color:#e2f4ff;
+    background:rgba(6,16,38,.8);border:1px solid rgba(140,215,255,.45);
+    padding:7px 13px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px);
+    box-shadow:0 4px 14px rgba(0,0,0,.42);transition:.22s ease;
+  }
+  .pctl:hover{background:rgba(22,54,106,.92);border-color:rgba(185,238,255,.85);
+    box-shadow:0 0 16px rgba(99,212,255,.45);transform:translateY(-1px)}
+  @media(max-width:520px){.pctl{font-size:10.5px;padding:6px 10px}.pcontrols{left:10px;right:10px;justify-content:center}}
   .player .empty{
     text-align:center;padding:28px 18px;color:#9fc2e4;font-size:13.5px;font-weight:300;
     display:grid;gap:8px;justify-items:center;
@@ -989,6 +1000,9 @@
   var API = 'https://kick.com/api/v2/channels/' + CH;
   var CACHE = 'lorelsee_status_v2';
   var playing = false;
+  var autoPlay = (function(){ try{ return localStorage.getItem('lorelsee_autoplay') !== '0'; }catch(e){ return true; } })();
+  var mutedState = true;
+  var lastCh = null, lastVideos = null;
 
   function $(id){ return document.getElementById(id); }
   function esc(s){
@@ -1069,17 +1083,45 @@
     }
   }
 
-  function startPlay(){
+  function controlsHtml(muted){
+    return '<div class="pcontrols">' +
+      '<button type="button" class="pctl" id="soundBtn">' + (muted ? '🔊 Sesi Aç' : '🔇 Sesi Kapat') + '</button>' +
+      '<button type="button" class="pctl" id="autoBtn" title="Otomatik oynatmayı aç / kapat">' +
+        (autoPlay ? '⏸ Auto: Açık' : '▶ Auto: Kapalı') + '</button>' +
+      '</div>';
+  }
+
+  function startPlay(muted){
     playing = true;
-    $('sPlayer').innerHTML =
-      '<iframe src="https://player.kick.com/' + CH + '?autoplay=true&amp;muted=true" ' +
+    mutedState = muted !== false;
+    var p = $('sPlayer');
+    p.classList.remove('no-poster');
+    p.style.cursor = 'default';
+    p.onclick = null;
+    p.innerHTML =
+      '<iframe src="https://player.kick.com/' + CH + '?autoplay=true' + (mutedState ? '&amp;muted=true' : '') + '" ' +
       'allowfullscreen="true" scrolling="no" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" ' +
-      'title="Lorelsee canlı yayını"></iframe>';
+      'title="Lorelsee canlı yayını"></iframe>' + controlsHtml(mutedState);
+    bindControls();
+  }
+
+  function bindControls(){
+    var s = $('soundBtn'), a = $('autoBtn');
+    if (s) s.onclick = function(e){ e.stopPropagation(); startPlay(!mutedState); };
+    if (a) a.onclick = function(e){ e.stopPropagation(); setAutoPlay(!autoPlay); };
+  }
+
+  function setAutoPlay(v){
+    autoPlay = v;
+    try{ localStorage.setItem('lorelsee_autoplay', v ? '1' : '0'); }catch(e){}
+    playing = false;
+    if (lastCh) render(lastCh, lastVideos); else load();
   }
 
   function render(ch, videos){
     if (!ch) return;
-    renderVideos(videos);
+    lastCh = ch; lastVideos = videos || [];
+    renderVideos(lastVideos);
     var f = $('followers');
     if (f) f.textContent = ch.followers_count ? num(ch.followers_count) + ' takipçi' : '';
 
@@ -1092,8 +1134,17 @@
       badge.className = 'badge live';
       badge.innerHTML = '<span class="dot"></span> CANLI';
       meta.innerHTML = '<b>' + num(ls.viewer_count) + '</b> izleyici şu an yayında';
+      var cat = (ls.categories && ls.categories[0] && ls.categories[0].name) || '';
+      foot.innerHTML =
+        '<div class="stitle">' + esc(ls.session_title) + '</div>' +
+        '<div class="srow">' +
+          (cat ? '<span class="chip">' + esc(cat) + '</span>' : '<span></span>') +
+          '<a class="btn btn-kick" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'te Aç</a>' +
+        '</div>';
       if (playing && player.querySelector('iframe')) return;
       playing = false;
+      /* otomatik oynatma açıksa: sessizce yayını başlat */
+      if (autoPlay){ startPlay(true); return; }
       var th = (ls.thumbnail && (ls.thumbnail.url || ls.thumbnail)) || '';
       player.style.cursor = 'default';
       player.onclick = null;
@@ -1102,17 +1153,12 @@
         (th ? '<img src="' + esc(th) + '" alt="Canlı yayın önizlemesi" onerror="this.style.display=\'none\'">' : '') +
         '<button class="play-btn" id="playBtn" aria-label="Yayını oynat"><span class="play-circle"></span></button>' +
         '<span class="tag-live">CANLI</span>' +
-        '<span class="viewers">👁 ' + num(ls.viewer_count) + ' izleyici</span>';
+        '<span class="viewers">👁 ' + num(ls.viewer_count) + ' izleyici</span>' +
+        '<div class="pcontrols"><button type="button" class="pctl" id="autoBtn" title="Otomatik oynatmayı aç / kapat">▶ Auto: Kapalı</button></div>';
+      bindControls();
       var pb = $('playBtn');
-      if (pb) pb.onclick = function(e){ e.stopPropagation(); startPlay(); };
-      player.onclick = startPlay; /* alanın herhangi bir yeri tıklanabilir */
-      var cat = (ls.categories && ls.categories[0] && ls.categories[0].name) || '';
-      foot.innerHTML =
-        '<div class="stitle">' + esc(ls.session_title) + '</div>' +
-        '<div class="srow">' +
-          (cat ? '<span class="chip">' + esc(cat) + '</span>' : '<span></span>') +
-          '<a class="btn btn-kick" href="' + kickUrl() + '" target="_blank" rel="noopener">Kick\'te Aç</a>' +
-        '</div>';
+      if (pb) pb.onclick = function(e){ e.stopPropagation(); startPlay(false); };
+      player.onclick = function(){ startPlay(false); }; /* manuel tıklama: sesli başlat */
       return;
     }
 
